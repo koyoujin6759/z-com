@@ -1,6 +1,7 @@
 import Link from "next/link";
 import style from "@/app/(afterLogin)/_component/post.module.css";
 import cx from "classnames";
+import Image from "next/image";
 type Props = {
   post: {
     postId: number;
@@ -14,13 +15,14 @@ type Props = {
     Images: any[];
   };
 };
+
 export default function PostImages({ post }: Props) {
   if (!post.Images) return null;
   if (!post.Images.length) return null;
   if (post.Images.length === 1) {
     return (
       <Link href={`/${post.User.id}/status/${post.postId}/photo/${post.Images[0].imageId}`} className={cx(style.postImageSection, style.oneImage)} style={{ backgroundImage: `url(${post.Images[0]?.link})`, backgroundSize: "contain" }}>
-        <img src={post.Images[0]?.link} alt="" />
+        <Image src={post.Images[0]?.link} alt="" width={300} height={300} />
       </Link>
     );
   }

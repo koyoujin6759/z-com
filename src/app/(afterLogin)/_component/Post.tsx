@@ -6,11 +6,13 @@ import "dayjs/locale/ko";
 import ActionButtons from "@/app/(afterLogin)/_component/ActionButtons";
 import Image from "next/image";
 import PostArticle from "@/app/(afterLogin)/_component/PostArticle";
+import { faker } from "@faker-js/faker";
+import PostImages from "@/app/(afterLogin)/_component/PostImages";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
 
-export default function Post() {
+export default function Post({ noImage }: { noImage?: boolean }) {
   const target = {
     postId: 1,
     User: {
@@ -20,8 +22,11 @@ export default function Post() {
     },
     content: "클론코딩 라이브로 하니 너무 힘들어요 ㅠㅠ",
     createdAt: new Date(),
-    Images: [],
+    Images: [] as any[],
   };
+  if (Math.random() > 0.5 && !noImage) {
+    target.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() }, { imageId: 2, link: faker.image.urlLoremFlickr() }, { imageId: 3, link: faker.image.urlLoremFlickr() });
+  }
   return (
     //서버컴포넌트와 클라이언트컴포넌트를 같이씀. PostArticle는 클라이언트컴포넌트
     <PostArticle post={target}>
@@ -43,7 +48,9 @@ export default function Post() {
             <span className={style.postDate}>{dayjs(target.createdAt).fromNow(true)}</span>
           </div>
           <div>{target.content}</div>
-          <div className={style.postImageSection}></div>
+          <div>
+            <PostImages post={target} />
+          </div>
           <ActionButtons />
         </div>
       </div>
