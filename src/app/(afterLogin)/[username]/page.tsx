@@ -3,6 +3,7 @@ import Post from "@/app/(afterLogin)/_component/Post";
 import BackButton from "@/app/(afterLogin)/_component/BackButton";
 import Image from "next/image";
 import FollowButton from "@/app/(afterLogin)/_component/FollowButton";
+
 export default async function Profile() {
   const user = {
     id: "zerohch0",

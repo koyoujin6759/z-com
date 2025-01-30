@@ -13,11 +13,11 @@ export const {
   },
   callbacks: {
     jwt({ token }) {
-      console.log("auth.ts jwt", token);
+      //   console.log("auth.ts jwt", token);
       return token;
     },
     session({ session, newSession, user }) {
-      console.log("auth.ts session", session, newSession, user);
+      //   console.log("auth.ts session", session, newSession, user);
       return session;
     },
   },

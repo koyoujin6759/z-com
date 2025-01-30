@@ -10,13 +10,12 @@ export default function Login() {
   const { data: session } = useSession();
 
   useEffect(() => {
-    router.replace("/i/flow/login");
-  }, [router]);
-
-  if (session?.user) {
-    router.replace("/home");
-    return null;
-  }
+    if (session?.user) {
+      router.replace("/home");
+    } else {
+      router.replace("/i/flow/login");
+    }
+  }, [router, session]);
 
   return <Main />;
 }
