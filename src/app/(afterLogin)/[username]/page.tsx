@@ -2,12 +2,14 @@ import style from "./profile.module.css";
 import Post from "@/app/(afterLogin)/_component/Post";
 import BackButton from "@/app/(afterLogin)/_component/BackButton";
 import Image from "next/image";
-export default function Profile() {
+import FollowButton from "@/app/(afterLogin)/_component/FollowButton";
+export default async function Profile() {
   const user = {
     id: "zerohch0",
     nickname: "제로초",
     image: "/5Udwvqim.jpg",
   };
+
   return (
     <main className={style.main}>
       <div className={style.header}>
@@ -22,7 +24,7 @@ export default function Profile() {
           <div>{user.nickname}</div>
           <div>@{user.id}</div>
         </div>
-        <button className={style.followButton}>팔로우</button>
+        <FollowButton />
       </div>
       <div>
         <Post />
