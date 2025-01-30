@@ -11,6 +11,16 @@ export const {
     signIn: "/i/flow/login",
     newUser: "/i/flow/signup",
   },
+  callbacks: {
+    jwt({ token }) {
+      console.log("auth.ts jwt", token);
+      return token;
+    },
+    session({ session, newSession, user }) {
+      console.log("auth.ts session", session, newSession, user);
+      return session;
+    },
+  },
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
