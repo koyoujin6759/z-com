@@ -3,7 +3,11 @@
 import { redirect } from "next/navigation";
 import { signIn } from "@/auth";
 
-export default async (prevState: any, formData: FormData) => {
+interface SignupResult {
+  message: "no_id" | "no_name" | "no_password" | "no_image" | "user_exists" | null;
+}
+
+export default async function signup(prevState: any, formData: FormData): Promise<SignupResult | void> {
   if (!formData.get("id") || !(formData.get("id") as string)?.trim()) {
     return { message: "no_id" };
   }
@@ -42,4 +46,4 @@ export default async (prevState: any, formData: FormData) => {
   if (shouldRedirect) {
     redirect("/home"); // try/catch문 안에서 X
   }
-};
+}
