@@ -37,7 +37,7 @@ export default async function signup(prevState: any, formData: FormData): Promis
       username: formData.get("id"),
       password: formData.get("password"),
       redirect: false,
-    });
+    }); //회원가입 후 로그인까지 진행
   } catch (err) {
     console.error(err);
     return { message: null };
