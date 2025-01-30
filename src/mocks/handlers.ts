@@ -7,7 +7,8 @@ const User = [
   { id: "leoturtle", nickname: "레오", image: faker.image.avatar() },
 ];
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+const baseUrl = process.env.NEXT_PUBLIC_API_URL || "";
+
 export const handlers = [
   http.post(`${baseUrl}/api/login`, () => {
     console.log("로그인");

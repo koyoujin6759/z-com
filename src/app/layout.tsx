@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { MSWProvider } from "@/app/_component/MSWComponent";
+import { MSWComponent } from "@/app/_component/MSWComponent";
 
 if (process.env.NEXT_RUNTIME === "nodejs" && process.env.NODE_ENV !== "production") {
   import("@/mocks/http").then(({ server }) => {
@@ -26,7 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <MSWProvider>{children}</MSWProvider>
+        <MSWComponent />
+        {children}
       </body>
     </html>
   );
