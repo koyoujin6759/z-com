@@ -1,4 +1,4 @@
-import { User } from "@/model/User";
+import { User } from "./User";
 import { PostImage } from "@/model/PostImage";
 
 export interface Post {

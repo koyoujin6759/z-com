@@ -1,9 +1,9 @@
-type Props = { pageParam?: number };
-export async function getPostRecommends({ pageParam }: Props) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/postRecommends?cursor=${pageParam}`, {
+export async function getFollowingPosts() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/followingPosts`, {
     next: {
-      tags: ["posts", "recommends"],
+      tags: ["posts", "followings"],
     },
+    cache: "no-store",
   });
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
