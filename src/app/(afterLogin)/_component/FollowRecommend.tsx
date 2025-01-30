@@ -2,9 +2,16 @@
 
 import style from "./followRecommend.module.css";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 export default function FollowRecommend() {
-  const onFollow = () => {};
+  const session = useSession();
+  const onFollow = () => {
+    if (!session?.data?.user) {
+      redirect("/login");
+    }
+  };
 
   const user = {
     id: "elonmusk",
