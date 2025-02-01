@@ -4,6 +4,7 @@ import style from "./modal.module.css";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function TweetModal() {
   const router = useRouter();
@@ -16,10 +17,7 @@ export default function TweetModal() {
   const onClickButton = () => {};
   const onChangeContent = () => {};
 
-  const me = {
-    id: "zerohch0",
-    image: "/5Udwvqim.jpg",
-  };
+  const { data: me } = useSession();
 
   return (
     //모달 인터셉팅
@@ -36,7 +34,7 @@ export default function TweetModal() {
           <div className={style.modalBody}>
             <div className={style.postUserSection}>
               <div className={style.postUserImage}>
-                <Image src={me.image} alt={me.id} width={40} height={40} />
+                <Image src={me?.user?.image as string} alt={me?.user?.email as string} width={40} height={40} />
               </div>
             </div>
             <div className={style.inputDiv}>
