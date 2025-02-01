@@ -16,41 +16,34 @@ type Props = {
   post: Post;
 };
 export default function Post({ noImage, post }: Props) {
-  // console.log("post data:", post);
   const target = post;
-
-  const user = target.User || {
-    id: "unknown",
-    nickname: "사용자",
-    image: "/default-avatar.png",
-  };
-
+  console.log("target", target);
   return (
     <PostArticle post={target}>
       <div className={style.postWrapper}>
         <div className={style.postUserSection}>
-          <Link href={`/${user.id}`} className={style.postUserImage}>
-            <Image src={user.image} alt={user.nickname} width={100} height={100} />
+          <Link href={`/${target.User.id}`} className={style.postUserImage}>
+            <Image src={target.User.image} alt={target.User.nickname} width={100} height={100} />
             <div className={style.postShade} />
           </Link>
         </div>
         <div className={style.postBody}>
           <div className={style.postMeta}>
-            <Link href={`/${user.id}`}>
-              <span className={style.postUserName}>{user.nickname}</span>
+            <Link href={`/${target.User.id}`}>
+              <span className={style.postUserName}>{target.User.nickname}</span>
               &nbsp;
-              <span className={style.postUserId}>@{user.id}</span>
+              <span className={style.postUserId}>@{target.User.id}</span>
               &nbsp; · &nbsp;
             </Link>
-            <span className={style.postDate}>{dayjs(post.createdAt).fromNow(true)}</span>
+            <span className={style.postDate}>{dayjs(target.createdAt).fromNow(true)}</span>
           </div>
-          <div>{post.content}</div>
+          <div>{target.content}</div>
           {!noImage && (
             <div>
-              <PostImages post={post} />
+              <PostImages post={target} />
             </div>
           )}
-          <ActionButtons />
+          <ActionButtons post={target} />
         </div>
       </div>
     </PostArticle>

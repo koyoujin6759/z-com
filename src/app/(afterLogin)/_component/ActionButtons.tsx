@@ -1,12 +1,13 @@
 "use client";
 import style from "./post.module.css";
 import cx from "classnames";
-
+import { Post } from "@/model/Post";
 type Props = {
   white?: boolean;
+  post: Post;
 };
 
-export default function ActionButtons({ white }: Props) {
+export default function ActionButtons({ white, post }: Props) {
   const commented = false;
   const reposted = false;
   const liked = false;

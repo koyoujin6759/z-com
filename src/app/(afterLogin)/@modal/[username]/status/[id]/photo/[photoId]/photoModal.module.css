@@ -25,6 +25,10 @@
   display: none;
 }
 
+.imageZone.show {
+  display: block;
+}
+
 .buttonZone {
   display: flex;
   flex-direction: row;
