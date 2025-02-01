@@ -23,6 +23,30 @@ const delay = (ms: number) =>
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 
+// 사용자 타입 정의 추가
+interface User {
+  id: string;
+  nickname: string;
+  image: string;
+}
+
+// 응답 타입 정의 추가
+interface UserResponse {
+  message: "no_such_user";
+}
+
+interface Post {
+  postId: string | number;
+  User: User;
+  content: string;
+  Images: Array<{ imageId: number; link: string }>;
+  createdAt: Date;
+}
+
+interface PostResponse {
+  message: "no_such_post";
+}
+
 export const handlers = [
   http.post(`${baseUrl}/api/login`, () => {
     console.log("로그인");
@@ -232,7 +256,7 @@ export const handlers = [
       },
     ]);
   }),
-  http.get("/api/users/:userId", ({ request, params }): StrictResponse<any> => {
+  http.get("/api/users/:userId", ({ request, params }): StrictResponse<User | UserResponse> => {
     const { userId } = params;
     const found = User.find((v) => v.id === userId);
     if (found) {
@@ -245,7 +269,7 @@ export const handlers = [
       }
     );
   }),
-  http.get("/api/posts/:postId", ({ request, params }): StrictResponse<any> => {
+  http.get("/api/posts/:postId", ({ request, params }): StrictResponse<Post | PostResponse> => {
     const { postId } = params;
     if (parseInt(postId as string) > 10) {
       return HttpResponse.json(
