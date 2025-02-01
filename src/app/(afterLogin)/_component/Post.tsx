@@ -16,7 +16,7 @@ type Props = {
   post: Post;
 };
 export default function Post({ noImage, post }: Props) {
-  console.log("post data:", post);
+  // console.log("post data:", post);
   const target = post;
 
   const user = target.User || {

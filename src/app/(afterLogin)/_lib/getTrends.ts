@@ -1,7 +1,7 @@
-export async function getFollowingPosts() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/followingPosts`, {
+export async function getTrends() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/trends`, {
     next: {
-      tags: ["posts", "followings"],
+      tags: ["trends"],
     },
     cache: "no-store",
   });
