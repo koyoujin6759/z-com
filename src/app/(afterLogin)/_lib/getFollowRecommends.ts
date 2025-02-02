@@ -3,7 +3,8 @@ export async function getFollowRecommends() {
     next: {
       tags: ["users", "followRecommends"],
     },
-    cache: "no-store",
+    credentials: "include",
+    cache: "force-cache",
   });
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
